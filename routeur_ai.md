@@ -1,7 +1,3 @@
-Voici la rédaction du guide complet en style **impersonnel**, structurée pour une documentation technique de type GitHub ou un manuel d'exploitation.
-
----
-
 # 🧠 Guide de Mise en Œuvre du Routage Intelligent (Task-Based Routing)
 
 L'objectif de cette configuration est l'automatisation de la sélection du modèle LLM en fonction de la complexité et de la nature de la requête utilisateur. Cette approche permet d'optimiser l'usage de la VRAM (**12 Go sur RTX 4070 Ti**) et de réduire la latence globale du système.
