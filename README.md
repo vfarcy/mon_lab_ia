@@ -166,7 +166,6 @@ Cette documentation analyse les forces et limites des modèles installés, en fo
 | **Richesse Sémantique** | `gemma4:e4b` | Paramétrage créatif |
 | **Analyse de Documents Visuels**| `llama3.2-vision` | Inférence multimodale |
 
----
 
 ### 🛠️ Rappel de Maintenance (VRAM)
 Pour garantir une performance constante, il est recommandé de redémarrer le service Ollama (`sudo systemctl restart ollama`) après l'utilisation intensive du modèle **Gemma 4 : 26b**, afin de purger la VRAM et d'éviter que les modèles légers ne soient ralentis par des résidus de mémoire.
@@ -175,16 +174,6 @@ Pour garantir une performance constante, il est recommandé de redémarrer le se
 #### 🛠️ Préconisation de Maintenance
 Pour garantir une performance constante, il est recommandé de redémarrer le service Ollama (`sudo systemctl restart ollama`) après l'utilisation intensive du modèle **Gemma 4 : 26b**, afin de libérer totalement la mémoire vidéo et d'éviter la fragmentation de la VRAM pour les modèles plus légers.
 
-
-
-
-C'est une excellente idée d'ajouter cette section. **Miniforge/Mamba** est souvent le "héros méconnu" d'un Lab IA : c'est lui qui s'assure que Python, tes pilotes NVIDIA et tes bibliothèques de calcul (PyTorch, Transformers) cohabitent sans s'entre-détruire.
-
-Voici le contenu structuré à ajouter à ton `README.md` pour expliquer l'utilité de Mamba et comment l'installer proprement.
-
----
-
-Voici une reformulation en style impersonnel (ton neutre et technique), idéale pour une documentation de type GitHub ou un guide professionnel.
 
 ---
 
@@ -207,7 +196,7 @@ En l'absence de l'outil sur le système, la procédure est la suivante :
 
 1. **Téléchargement de l'installeur :**
    ```bash
-   wget [https://github.com/conda-forge/miniforge/releases/latest/download/Miniforge3-Linux-x86_64.sh](https://github.com/conda-forge/miniforge/releases/latest/download/Miniforge3-Linux-x86_64.sh)
+   wget https://github.com/conda-forge/miniforge/releases/latest/download/Miniforge3-Linux-x86_64.sh
    ```
 
 2. **Exécution de l'installation :**
