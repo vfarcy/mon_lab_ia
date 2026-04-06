@@ -4,7 +4,7 @@ Voici **un tableau synthétique et complet**, regroupant **performances relative
 
 ## 📊 Comparatif des modèles Ollama (optimisé pour le matériel)
 
-| Modèle                 | Taille / VRAM | Vitesse sur ta config | Points forts                                                            | Limites                                         | Usage recommandé                | Avis global               |
+| Modèle                 | Taille / VRAM | Vitesse sur la config | Points forts                                                            | Limites                                         | Usage recommandé                | Avis global               |
 | ---------------------- | ------------- | --------------------- | ----------------------------------------------------------------------- | ----------------------------------------------- | ------------------------------- | ------------------------- |
 | **Qwen2.5:14B**        | \~9.0 Go      | 🟡 Moyenne            | Excellent raisonnement, très bon français, stable, peu d’hallucinations | VRAM presque saturée, plus lent sur CPU ancien  | Chat avancé, analyse, réflexion | ⭐⭐⭐⭐⭐ **Meilleur global** |
 | **LLaMA 3.1 / 3.2 8B** | \~4.9–7.8 Go  | 🟢 Rapide             | Très bon équilibre, rapide GPU, stable                                  | Raisonnement moins profond, français correct    | Chat quotidien, assistant local | ⭐⭐⭐⭐½                     |
