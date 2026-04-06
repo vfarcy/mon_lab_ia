@@ -217,6 +217,7 @@ En l'absence de l'outil sur le système, la procédure est la suivante :
 
 ### 🚀 Commandes usuelles de gestion
 
+```
 | Action | Commande |
 | :--- | :--- |
 | **Création d'un environnement** | `mamba create -n nom_env python=3.11` |
