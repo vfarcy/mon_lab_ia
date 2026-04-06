@@ -1,6 +1,6 @@
 # 🧠 Guide de Mise en Œuvre du Routage Intelligent (CLI)
 
-L'objectif de cette configuration est l'automatisation de la sélection du modèle LLM en fonction de la complexité et de la nature de la requête utilisateur. Cette approche permet d'optimiser l'usage de la VRAM (**12 Go sur RTX 4070 Ti**) et de réduire la latence globale du système.
+L'objectif de cette configuration CLI est l'automatisation de la sélection du modèle LLM en fonction de la complexité et de la nature de la requête utilisateur. Cette approche permet d'optimiser l'usage de la VRAM (**12 Go sur RTX 4070 Ti**) et de réduire la latence globale du système.
 
 ---
 
@@ -109,8 +109,7 @@ Ce guide présente les deux méthodes permettant d'intégrer une logique de rout
 
 # 🌐 Guide d'Intégration du Routage Intelligent dans Open WebUI
 
-Deux approches sont possibles selon le niveau d'automatisation souhaité : l'utilisation des **Functions** (Native Python) ou la création de **Modèles Dédiés** (Structurelle).
-
+Deux approches sont possibles selon le niveau d'automatisation souhaité dans le cas d'utilisation de WebUI : l'utilisation des **Functions** (Native Python) ou la création de **Modèles Dédiés** (Structurelle).
 
 ## 🛠️ Option A : Automatisation par les "Functions" (Filtres)
 
