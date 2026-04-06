@@ -70,7 +70,7 @@ Le facteur limitant pour l'IA locale est la **VRAM (12 Go)**. Voici les performa
      docker start open-webui
      ```
 
-    Sinon, automatiser définitivement le lancement au boot avec :
+    Sinon, automatiser définitivement le lancement du serveur web au boot avec :
 
     ```bash 
     docker update --restart always open-webui
