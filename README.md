@@ -127,58 +127,72 @@ print(response['message']['content'])
 
 ---
 
+Voici la mise à jour de ta section **6. Synthèse Technique**, optimisée pour intégrer **Qwen2.5:14B** comme pièce maîtresse de ton dispositif. J'ai harmonisé le style avec tes autres sections et ajusté les données de VRAM pour ta **RTX 4070 Ti**.
+
+---
+
 ## 🧠 6. Synthèse Technique des Modèles LLM (Ollama)
 
-Cette documentation analyse les forces et limites des modèles installés, en fonction de leur architecture et de leur empreinte mémoire sur la **RTX 4070 Ti**.
+Cette documentation analyse les forces et limites des modèles installés, en fonction de leur architecture et de leur empreinte mémoire sur la **RTX 4070 Ti (12 Go)**.
 
-### 1. Modèles Spécialisés (Métiers, Logique & Vision)
+### 1. Le "Daily Driver" : Le compromis idéal
+
+
+#### **Qwen2.5 : 14B** (9.0 GB)
+* **Forces :** Excellence en programmation, mathématiques et instructions complexes. Architecture ultra-moderne.
+* **Impact VRAM :** Occupant ~9.2 GB, il laisse la place nécessaire au cache de contexte (KV Cache) pour des réponses fluides.
+* **Verdict :** Le modèle principal du Lab. Il remplace avantageusement les modèles 7B et 8B pour toutes les tâches de production.
+
+---
+
+### 2. Modèles Spécialisés (Métiers, Logique & Vision)
 
 | Modèle | Points Forts | Limites | Cas d'Usage |
 | :--- | :--- | :--- | :--- |
-| **Qwen2.5-Coder** (4.7 GB) | Excellence en programmation. Syntaxe rigoureuse (Python, JS, Bash). | Moins performant pour la rédaction littéraire. | Développement, automatisation, scripts. |
-| **DeepSeek-R1** (5.2 GB) | Raisonnement par "Chaîne de Pensée" (CoT). Idéal pour les problèmes complexes. | Latence initiale élevée due à la phase de réflexion. | Mathématiques, logique pure, diagnostic. |
-| **Llama3.2-Vision** (7.8 GB) | Analyse multimodale (Texte + Image). Identification d'objets et OCR. | Capacités de rédaction inférieures aux modèles textuels purs. | Lecture de schémas, UI/UX, analyse visuelle. |
-| **Aya Expanse 8B** (5.1 GB) | Expertise multilingue (101 langues). Respect des nuances culturelles. | Moins "technique" que Qwen ou Phi-4. | Traduction haute fidélité, correction grammaticale. |
+| **Qwen2.5-Coder** (4.7 GB) | Syntaxe rigoureuse (Python, JS, Bash). | Moins performant pour la rédaction littéraire. | Développement, scripts, automatisation. |
+| **DeepSeek-R1** (5.2 GB) | Raisonnement par "Chaîne de Pensée" (CoT). | Latence initiale (phase de réflexion). | Logique pure, diagnostic, mathématiques. |
+| **Llama3.2-Vision** (7.8 GB) | Analyse multimodale (Texte + Image). | Rédaction textuelle en retrait. | OCR, analyse de schémas, UI/UX. |
+| **Aya Expanse 8B** (5.1 GB) | Expertise multilingue (101 langues). | Moins technique que Qwen ou Phi-4. | Traduction, nuances culturelles. |
 
-### 2. Modèles Polyvalents "Haute Performance" (9B - 12B)
-*Ces modèles occupent entre 6 et 10 Go de VRAM, permettant une exécution 100% GPU sans latence.*
+---
+
+### 3. Modèles Polyvalents "Haute Performance"
 
 #### **Phi-4** (9.1 GB)
-* **Forces :** Densité de connaissances exceptionnelle. Très performant sur les benchmarks de compréhension fine.
-* **Limites :** Nécessite des instructions (prompts) structurées.
-* **Verdict :** La référence actuelle pour la productivité et la synthèse d'informations.
+* **Forces :** Densité de connaissances exceptionnelle. Très fin sur les benchmarks de compréhension.
+* **Limites :** Sensible à la structure du prompt.
+* **Verdict :** La référence pour la synthèse d'informations complexes.
 
 #### **Mistral-Nemo** (7.1 GB)
 * **Forces :** Optimisation NVIDIA. Fenêtre de contexte native de **128k tokens**.
-* **Limites :** Un peu moins créatif dans la génération de texte libre que Gemma.
-* **Verdict :** Le meilleur pour l'analyse de documents volumineux et les contextes étendus.
+* **Limites :** Moins créatif que la série Gemma.
+* **Verdict :** Idéal pour l'analyse de documents volumineux.
 
-#### **Qwen 3.5 (9b)** & **Llama 3.1 (8b)**
-* **Forces :** Grande stabilité. Standards de l'industrie avec une excellente compréhension du français.
-* **Limites :** Performances globales légèrement en retrait face à Phi-4.
-* **Verdict :** Modèles polyvalents "tout-terrain" pour des requêtes générales.
+---
 
-### 3. Modèles à Haute Capacité (Gemma 4)
+### 4. Modèles à Haute Capacité (Gemma 4)
 
 | Variante | Capacités | Impact Infrastructure (12 Go VRAM) |
 | :--- | :--- | :--- |
-| **Gemma 4 : e4b** (9.6 GB) | Grande finesse sémantique. Ton très naturel et créatif. | **Optimal.** Chargement intégral sur GPU. Fluidité maximale. |
-| **Gemma 4 : 26b** (17 GB) | Niveau d'abstraction et d'intelligence supérieur. | **Critique.** Débordement (~5 Go) sur RAM système (DDR3). Débit très lent. |
+| **Gemma 4 : e4b** (9.6 GB) | Finesse sémantique et ton naturel. | **Optimal.** Chargement 100% GPU. Fluidité maximale. |
+| **Gemma 4 : 26b** (17 GB) | Intelligence supérieure (niveau GPT-4). | **Critique.** Débordement (~5 Go) sur RAM DDR3. Débit très lent. |
 
+---
 
 ### 📊 Matrice de Sélection Opérationnelle
 
-
 | Objectif | Modèle Recommandé | Priorité Technique |
 | :--- | :--- | :--- |
-| **Vitesse & Latence faible** | `qwen2.5-coder` / `mistral` | Faible empreinte VRAM |
+| **Polyvalence & Puissance** | `qwen2.5:14b` | **Équilibre VRAM/Intelligence** |
+| **Vitesse & Latence** | `qwen2.5-coder` / `mistral` | Faible empreinte mémoire |
 | **Qualité de Raisonnement** | `deepseek-r1` / `phi4` | Logique multicouche |
-| **Traduction & Linguistique** | `aya-expanse` | Diversité du tokenizer |
 | **Analyse de Longs Textes** | `mistral-nemo` | Fenêtre de contexte (128k) |
-| **Richesse Sémantique** | `gemma4:e4b` | Paramétrage créatif |
-| **Analyse de Documents Visuels**| `llama3.2-vision` | Inférence multimodale |
+| **Analyse Visuelle** | `llama3.2-vision` | Inférence multimodale |
 
+---
 
+### 🛠️ Préconisation de Maintenance
+Pour garantir une performance constante, il est recommandé de redémarrer le service Ollama (`sudo systemctl restart ollama`) après l'utilisation intensive du modèle **Gemma 4 : 26b**. Cela permet de purger la VRAM, d'éviter la fragmentation de la mémoire vidéo et de garantir que les modèles comme **Qwen2.5:14B** s'exécutent de nouveau à 100% sur le GPU.
 ### 🛠️ Rappel de Maintenance (VRAM)
 Pour garantir une performance constante, il est recommandé de redémarrer le service Ollama (`sudo systemctl restart ollama`) après l'utilisation intensive du modèle **Gemma 4 : 26b**, afin de purger la VRAM et d'éviter que les modèles légers ne soient ralentis par des résidus de mémoire.
 
