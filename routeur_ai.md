@@ -1,4 +1,4 @@
-# 🧠 Guide de Mise en Œuvre du Routage Intelligent (Task-Based Routing)
+# 🧠 Guide de Mise en Œuvre du Routage Intelligent (CLI)
 
 L'objectif de cette configuration est l'automatisation de la sélection du modèle LLM en fonction de la complexité et de la nature de la requête utilisateur. Cette approche permet d'optimiser l'usage de la VRAM (**12 Go sur RTX 4070 Ti**) et de réduire la latence globale du système.
 
@@ -99,3 +99,78 @@ Pour permettre un accès universel à la fonction de routage depuis n'importe qu
 ## 📝 A noter
 
 > **Note sur le Routage Intelligent :** > La commande `ia` automatise la sélection du modèle. En cas de réponse inappropriée du dispatcher, il convient de vérifier la clarté de la requête initiale ou d'ajuster les règles de sélection dans le fichier `~/ia_router.sh`.
+
+
+
+
+Ce guide présente les deux méthodes permettant d'intégrer une logique de routage intelligent au sein de l'interface **Open WebUI**. L'objectif reste la préservation des ressources de la **RTX 4070 Ti** en automatisant le passage d'un modèle léger (Dispatcher) à un modèle lourd (Expert).
+
+---
+
+# 🌐 Guide d'Intégration du Routage Intelligent dans Open WebUI
+
+Deux approches sont possibles selon le niveau d'automatisation souhaité : l'utilisation des **Functions** (Native Python) ou la création de **Modèles Dédiés** (Structurelle).
+
+
+## 🛠️ Option A : Automatisation par les "Functions" (Filtres)
+
+Cette méthode est la plus performante car elle intercepte la requête de manière invisible pour l'utilisateur, reproduisant fidèlement le comportement du script de terminal.
+
+### 1. Accès à la configuration
+* Naviguer vers **Workspace** > **Functions**.
+* Cliquer sur le bouton **+** pour créer une nouvelle fonction.
+
+### 2. Implémentation de la logique de filtrage
+Le script doit être configuré comme un filtre d'entrée (*Inlet Filter*). Il analyse le message entrant et modifie dynamiquement le modèle de destination avant que la génération ne débute.
+
+**Logique du script (Python) :**
+* **Interrogation du Dispatcher :** Un appel API interne est lancé vers `llama3.1:8b`.
+* **Analyse de la réponse :** Le script extrait le nom du modèle cible (ex: `qwen2.5-coder`).
+* **Reroutage :** Le paramètre `body["model"]` de la requête est mis à jour avec l'ID du modèle expert.
+
+### 3. Activation
+* Enregistrer la fonction sous le nom `Router_Intelligent`.
+* Activer l'interrupteur **Global** (si disponible) ou l'assigner spécifiquement à un modèle de façade nommé "Assistant Automatique".
+
+
+
+---
+
+## 🛠️ Option B : Organisation par "Modèles Spécialisés" (Structurelle)
+
+Cette approche repose sur une segmentation claire de l'espace de travail. Elle est recommandée si une sélection manuelle assistée est préférée à une automatisation totale.
+
+### 1. Configuration des Experts
+Chaque modèle installé via Ollama doit être enregistré comme un "Modèle" distinct dans Open WebUI (**Workspace** > **Models**) avec un nommage explicite :
+* **[Expert] Code** (Source : `qwen2.5-coder`)
+* **[Expert] Maths & Logique** (Source : `phi-4`)
+* **[Expert] Analyse Profonde** (Source : `deepseek-r1`)
+
+### 2. Mise en place du Dispatcher "Conseiller"
+Un modèle nommé **"Aiguilleur"** est créé sur la base de `llama3.1:8b`.
+* **System Prompt :** "Votre rôle est d'analyser la demande. Si elle nécessite une expertise spécifique (Code, Maths, Vision), demandez à l'utilisateur d'utiliser la fonction `@` pour appeler le modèle [Expert] adéquat."
+
+### 3. Utilisation des "Actions"
+Il est possible d'ajouter des boutons de raccourcis (Actions) en bas de la fenêtre de chat pour basculer rapidement vers un autre modèle sans perdre le fil de la conversation.
+
+
+
+---
+
+## 🚦 Comparatif Technique des Options
+
+| Caractéristique | Option A (Functions) | Option B (Modèles) |
+| :--- | :--- | :--- |
+| **Expérience Utilisateur** | Transparente (Auto) | Manuelle (Sélective) |
+| **Complexité Setup** | Élevée (Code Python) | Faible (Configuration UI) |
+| **Flexibilité** | Totale | Limitée au choix humain |
+| **Gestion VRAM** | Optimale (Séquentielle) | Dépend de l'utilisateur |
+
+---
+
+## 📝 Mise à jour du Guide de Maintenance
+
+Il est impératif de noter que ces deux méthodes partagent une contrainte commune liée à l'infrastructure locale :
+
+> **⚠️ Note sur la Persistance VRAM :**
+> Lors de l'utilisation de l'**Option A**, un délai de latence peut apparaître entre la décision du Dispatcher et la réponse de l'Expert. Ce délai correspond au temps de chargement des poids du modèle dans la mémoire de la **RTX 4070 Ti**. Pour optimiser la réactivité, il est conseillé de régler le paramètre `keep_alive` d'Ollama sur une durée minimale de 5 minutes.
