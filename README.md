@@ -111,7 +111,6 @@ print(response['message']['content'])
 * **Mise à jour Moteur :** Relancer le script d'installation d'Ollama (`curl -fsSL...`).
 * **Gestion des modèles :** `ollama list` (voir), `ollama rm [nom]` (supprimer).
 
-
 ---
 
 ## 🧠 6. Synthèse Technique des Modèles LLM (Ollama)
@@ -191,8 +190,8 @@ Voici une reformulation en style impersonnel (ton neutre et technique), idéale 
 
 ## 📝 7. Mamba
 
-```markdown
-# 🐍 Gestion des environnements Python avec Mamba
+
+### 🐍 Gestion des environnements Python avec Mamba
 
 L'exécution de modèles d'IA (Ollama, Whisper, Stable Diffusion) sur une architecture NVIDIA nécessite une gestion rigoureuse des dépendances. L'utilisation de **Miniforge3** et de l'exécutable **Mamba** permet d'assurer cette stabilité.
 
