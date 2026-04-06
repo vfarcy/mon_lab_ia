@@ -251,6 +251,37 @@ En l'absence de l'outil sur le système, la procédure est la suivante :
 
 ---
 
+## 🎙️ 7. Configuration du Microphone (Accès Distant)
+
+L'utilisation des fonctions vocales d'Open WebUI (STT - Speech-to-Text) nécessite une autorisation spécifique, particulièrement lors d'un accès via une adresse IP locale.
+
+### Problématique de l'accès non sécurisé (HTTP)
+Par défaut, Google Chrome et les navigateurs basés sur Chromium bloquent l'accès au microphone sur les origines non sécurisées (celles qui ne sont pas en `https://`). Pour un usage en réseau local (`http://192.168.1.53:3000`), une exception doit être configurée.
+
+### Procédure de déblocage sous Chrome
+Si le microphone est indisponible malgré l'autorisation dans les paramètres du site :
+
+1. **Forcer l'origine sécurisée :**
+   Saisir l'adresse suivante dans la barre de recherche de Chrome :
+   `chrome://flags/#unsafely-treat-insecure-origin-as-secure`
+
+2. **Ajouter l'adresse du Lab :**
+   - Repérer la section **Insecure origins treated as secure**.
+   - Coller l'URL de l'interface (ex: `http://IP:3000`).
+   - Passer l'option à **Enabled**.
+
+3. **Relancer le navigateur :**
+   Cliquer sur le bouton **Relaunch** qui apparaît en bas de page.
+
+### Vérification système (Ubuntu)
+Si le problème persiste au niveau matériel sur le poste client (i7-3770 ou autre) :
+- Accéder aux **Paramètres d'Ubuntu** > **Son** > **Entrée**.
+- Sélectionner le périphérique d'entrée approprié.
+- Vérifier que la jauge de volume réagit lors de la captation vocale.
+
+> **⚠️ Note de sécurité :** Cette manipulation ne doit être effectuée que pour des adresses de confiance sur votre réseau local.
+
+---
 
 ## 📋 8. Protocoles de Surveillance et Limites
 
@@ -259,3 +290,8 @@ En l'absence de l'outil sur le système, la procédure est la suivante :
 * **Contexte :** Pour l'analyse de documents longs, régler le **Context Length** à **8192** (ou 16384 pour les modèles < 14B) dans les paramètres d'Open WebUI.
 * **Sécurité :** L'ouverture à `0.0.0.0` expose l'IA à votre réseau local. Utilisez un mot de passe fort sur Open WebUI.
 *  **Monitoring :** Lancer ``ssh -t login@IP "./monitor_ai.sh"`` pour visualiser les charges CPU et GPU du lab IA (voir aussi ``glances``).
+
+
+
+
+
