@@ -151,10 +151,8 @@ Cette documentation analyse les forces et limites des modèles installés, en fo
 | **Gemma 4 : e4b** (9.6 GB) | Grande finesse sémantique. Ton très naturel et créatif. | **Optimal.** Chargement intégral sur GPU. Fluidité maximale. |
 | **Gemma 4 : 26b** (17 GB) | Niveau d'abstraction et d'intelligence supérieur. | **Critique.** Débordement (~5 Go) sur RAM système (DDR3). Débit très lent. |
 
----
 
 ### 📊 Matrice de Sélection Opérationnelle
-
 
 
 | Objectif | Modèle Recommandé | Priorité Technique |
