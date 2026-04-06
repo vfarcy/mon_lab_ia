@@ -63,6 +63,12 @@ Le facteur limitant pour l'IA locale est la **VRAM (12 Go)**. Voici les performa
       --restart always \
       ghcr.io/open-webui/open-webui:main
     ```
+3.  **Au boot éventuellement  :**
+ ```docker start open-webui```
+
+Sinon, automatisation du lancement au boot avec :
+
+```docker update --restart always open-webui```
 
 ---
 
