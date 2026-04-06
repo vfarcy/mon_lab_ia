@@ -256,7 +256,7 @@ En l'absence de l'outil sur le système, la procédure est la suivante :
 L'utilisation des fonctions vocales d'Open WebUI (STT - Speech-to-Text) nécessite une autorisation spécifique, particulièrement lors d'un accès via une adresse IP locale.
 
 ### Problématique de l'accès non sécurisé (HTTP)
-Par défaut, Google Chrome et les navigateurs basés sur Chromium bloquent l'accès au microphone sur les origines non sécurisées (celles qui ne sont pas en `https://`). Pour un usage en réseau local (`http://192.168.1.53:3000`), une exception doit être configurée.
+Par défaut, Google Chrome et les navigateurs basés sur Chromium bloquent l'accès au microphone sur les origines non sécurisées (celles qui ne sont pas en `https://`). Pour un usage en réseau local (`http://IP:3000`), une exception doit être configurée.
 
 ### Procédure de déblocage sous Chrome
 Si le microphone est indisponible malgré l'autorisation dans les paramètres du site :
