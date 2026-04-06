@@ -177,9 +177,71 @@ Pour garantir une performance constante, il est recommandé de redémarrer le se
 Pour garantir une performance constante, il est recommandé de redémarrer le service Ollama (`sudo systemctl restart ollama`) après l'utilisation intensive du modèle **Gemma 4 : 26b**, afin de libérer totalement la mémoire vidéo et d'éviter la fragmentation de la VRAM pour les modèles plus légers.
 
 
+
+
+C'est une excellente idée d'ajouter cette section. **Miniforge/Mamba** est souvent le "héros méconnu" d'un Lab IA : c'est lui qui s'assure que Python, tes pilotes NVIDIA et tes bibliothèques de calcul (PyTorch, Transformers) cohabitent sans s'entre-détruire.
+
+Voici le contenu structuré à ajouter à ton `README.md` pour expliquer l'utilité de Mamba et comment l'installer proprement.
+
 ---
 
-## 📋 7. Protocoles de Surveillance et Limites
+Voici une reformulation en style impersonnel (ton neutre et technique), idéale pour une documentation de type GitHub ou un guide professionnel.
+
+---
+
+## 📝 7. Mamba
+
+```markdown
+# 🐍 Gestion des environnements Python avec Mamba
+
+L'exécution de modèles d'IA (Ollama, Whisper, Stable Diffusion) sur une architecture NVIDIA nécessite une gestion rigoureuse des dépendances. L'utilisation de **Miniforge3** et de l'exécutable **Mamba** permet d'assurer cette stabilité.
+
+### Fonctionnalités principales
+1. **Isolation :** Création d'environnements étanches. Cela permet d'exécuter simultanément des projets nécessitant des versions de Python distinctes (ex: 3.10 pour la Vision et 3.12 pour le Code) sans conflit système.
+2. **Optimisation GPU :** Mamba gère l'installation des frameworks (`PyTorch`, `TensorFlow`) en adéquation avec les pilotes CUDA installés (ex: **RTX 4070 Ti**).
+3. **Performance :** Grâce à un moteur de résolution écrit en C++, **Mamba** surpasse `conda` et `pip` en rapidité lors de l'analyse des dépendances et de l'installation des paquets.
+
+
+### 🛠️ Procédure d'installation sur Ubuntu
+
+En l'absence de l'outil sur le système, la procédure est la suivante :
+
+1. **Téléchargement de l'installeur :**
+   ```bash
+   wget [https://github.com/conda-forge/miniforge/releases/latest/download/Miniforge3-Linux-x86_64.sh](https://github.com/conda-forge/miniforge/releases/latest/download/Miniforge3-Linux-x86_64.sh)
+   ```
+
+2. **Exécution de l'installation :**
+   ```bash
+   bash Miniforge3-Linux-x86_64.sh
+   ```
+   *Suivre les instructions : acceptation de la licence et validation de l'initialisation (conda init).*
+
+3. **Prise en compte des modifications :**
+   ```bash
+   source ~/.bashrc
+   ```
+
+4. **Vérification de l'état du système :**
+   ```bash
+   mamba info
+   ```
+
+### 🚀 Commandes usuelles de gestion
+
+| Action | Commande |
+| :--- | :--- |
+| **Création d'un environnement** | `mamba create -n nom_env python=3.11` |
+| **Activation de l'environnement** | `mamba activate nom_env` |
+| **Installation de bibliothèques GPU** | `mamba install pytorch-cuda=12.1 -c pytorch -c nvidia` |
+| **Liste des environnements disponibles** | `mamba env list` |
+| **Nettoyage (après installation)** | `rm Miniforge3-Linux-x86_64.sh` |
+```
+
+---
+
+
+## 📋 8. Protocoles de Surveillance et Limites
 
 * **Surveillance VRAM :** Utiliser `nvtop` ou `nvidia-smi`. Si la VRAM sature, le système bascule sur la RAM (DDR3), ce qui divise la vitesse par 50.
 * **Redémarrage :** Ollama démarre via *systemd*. L'interface Docker redémarre automatiquement via le flag `--restart always`.
