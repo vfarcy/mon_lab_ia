@@ -1,6 +1,6 @@
 # 🏭 Guide Technique : Infrastructure d'IA Générative Locale
 
-Ceci est un guide technique comprenant les procédures d'installation, les prérequis, la maintenance et l'intégration Python. Ce document constitue une référence pour la gestion d'un laboratoire IA sur une configuration réelle recyclée pour l'occasion.
+Ceci est un guide technique comprenant les procédures d'installation, les prérequis, la maintenance et l'intégration Python de programmes python aux LLMs. Ce document constitue une référence pour la gestion d'un laboratoire IA sur une configuration réelle recyclée pour l'occasion.
 
 ## 📋 1. Prérequis Système et Matériels
 L'efficacité de l'inférence (génération de texte) dépend de l'équilibre entre la bande passante mémoire du GPU et la capacité du processeur à gérer les flux de données.
