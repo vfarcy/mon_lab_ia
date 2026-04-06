@@ -2,7 +2,7 @@ Voici **un tableau synthétique et complet**, regroupant **performances relative
 
 ***
 
-## 📊 Comparatif des modèles Ollama (optimisé pour TON matériel)
+## 📊 Comparatif des modèles Ollama (optimisé pour le matériel)
 
 | Modèle                 | Taille / VRAM | Vitesse sur ta config | Points forts                                                            | Limites                                         | Usage recommandé                | Avis global               |
 | ---------------------- | ------------- | --------------------- | ----------------------------------------------------------------------- | ----------------------------------------------- | ------------------------------- | ------------------------- |
