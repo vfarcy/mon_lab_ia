@@ -15,7 +15,7 @@ Voici **un tableau synthétique et complet**, regroupant **performances relative
 | **DeepSeek‑R1**        | \~5.2 Go      | 🟡 Lente              | Raisonnement structuré, étapes claires                                  | Très lent sur CPU ancien                        | Analyse technique               | ⭐⭐⭐½                      |
 | **LLaMA 3.2‑Vision**   | \~7.8 Go      | 🟡 Moyenne            | Vision + texte, analyse d’images                                        | Peu utile sans vision, VRAM utilisée            | Images + texte                  | ⭐⭐⭐                       |
 | **Gemma4:e4b**         | \~9.6 Go      | 🟡 Moyenne            | Dialogue naturel, bon français                                          | VRAM limite, raisonnement moyen                 | Chat secondaire                 | ⭐⭐⭐                       |
-| **Gemma4:26B**         | \~17 Go       | 🔴 Très lente         | Qualité théorique élevée                                                | ❌ Trop gros pour 12 Go VRAM, swap, inutilisable | Aucun sur ta config             | ❌ **À supprimer**         |
+| **Gemma4:26B**         | \~17 Go       | 🔴 Très lente         | Qualité théorique élevée                                                | ❌ Trop gros pour 12 Go VRAM, swap, inutilisable | Aucun sur la config             | ❌ **À supprimer**         |
 
 ***
 
