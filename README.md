@@ -127,10 +127,6 @@ print(response['message']['content'])
 
 ---
 
-Voici la mise à jour de ta section **6. Synthèse Technique**, optimisée pour intégrer **Qwen2.5:14B** comme pièce maîtresse de ton dispositif. J'ai harmonisé le style avec tes autres sections et ajusté les données de VRAM pour ta **RTX 4070 Ti**.
-
----
-
 ## 🧠 6. Synthèse Technique des Modèles LLM (Ollama)
 
 Cette documentation analyse les forces et limites des modèles installés, en fonction de leur architecture et de leur empreinte mémoire sur la **RTX 4070 Ti (12 Go)**.
