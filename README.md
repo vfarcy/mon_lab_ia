@@ -217,7 +217,7 @@ En l'absence de l'outil sur le système, la procédure est la suivante :
 
 ### 🚀 Commandes usuelles de gestion
 
-```
+
 | Action | Commande |
 | :--- | :--- |
 | **Création d'un environnement** | `mamba create -n nom_env python=3.11` |
@@ -225,7 +225,7 @@ En l'absence de l'outil sur le système, la procédure est la suivante :
 | **Installation de bibliothèques GPU** | `mamba install pytorch-cuda=12.1 -c pytorch -c nvidia` |
 | **Liste des environnements disponibles** | `mamba env list` |
 | **Nettoyage (après installation)** | `rm Miniforge3-Linux-x86_64.sh` |
-```
+
 
 ---
 
