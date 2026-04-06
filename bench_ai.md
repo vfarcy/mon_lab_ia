@@ -1,5 +1,4 @@
-Voici **un tableau synthétique et complet**, regroupant **performances relatives, points forts, limites et usages recommandés**, **adapté précisément à la configuration**  
-(i7‑3770 / 32 Go RAM / RTX 4070 Ti 12 Go VRAM).
+Voici **un tableau synthétique et complet**, regroupant **performances relatives, points forts, limites et usages recommandés**, **adapté précisément à la configuration** (i7‑3770 / 32 Go RAM / RTX 4070 Ti 12 Go VRAM).
 
 ***
 
