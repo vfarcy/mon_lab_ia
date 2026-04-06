@@ -96,8 +96,6 @@ Pour permettre un accès universel à la fonction de routage depuis n'importe qu
 
 ---
 
-## 📝 Mise à jour de la documentation (README.md)
-
-Il est recommandé d'ajouter la mention suivante au guide de maintenance :
+## 📝 A noter
 
 > **Note sur le Routage Intelligent :** > La commande `ia` automatise la sélection du modèle. En cas de réponse inappropriée du dispatcher, il convient de vérifier la clarté de la requête initiale ou d'ajuster les règles de sélection dans le fichier `~/ia_router.sh`.
