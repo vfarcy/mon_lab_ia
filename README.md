@@ -185,4 +185,4 @@ Pour garantir une performance constante, il est recommandé de redémarrer le se
 * **Redémarrage :** Ollama démarre via *systemd*. L'interface Docker redémarre automatiquement via le flag `--restart always`.
 * **Contexte :** Pour l'analyse de documents longs, régler le **Context Length** à **8192** (ou 16384 pour les modèles < 14B) dans les paramètres d'Open WebUI.
 * **Sécurité :** L'ouverture à `0.0.0.0` expose l'IA à votre réseau local. Utilisez un mot de passe fort sur Open WebUI.
-*  **Monitoring :** Lancer ``ssh -t login@IP "./monitor_ai.sh"`` pour visualiser les charges CPU et GPU 
+*  **Monitoring :** Lancer ``ssh -t login@IP "./monitor_ai.sh"`` pour visualiser les charges CPU et GPU du lab IA
