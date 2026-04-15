@@ -7,10 +7,10 @@ Ceci est un guide technique comprenant les procédures d'installation, les prér
 ## 📋 1. Prérequis Système et Matériels
 L'efficacité de l'inférence (génération de texte) dépend de l'équilibre entre la bande passante mémoire du GPU et la capacité du processeur à gérer les flux de données.
 
-* **Processeur (CPU) :** Minimum 4 cœurs / 8 threads (ici un **Intel i7-3770** clairement limitant pour le GPU). Assure le chargement initial des modèles.
+* **Processeur (CPU) :** Minimum 4 cœurs / 8 threads (ici un **AMD Ryzen 9 7900X **. Assure le chargement initial des modèles.
 * **Accélérateur Graphique (GPU) :** Carte **NVIDIA RTX** (Architecture Pascal ou plus récente). Une **RTX 4070 Ti (12 Go VRAM)** est le cœur de calcul.
-* **Mémoire Vive (RAM) :** **16 Go minimum** (**32 Go recommandés**) pour stabiliser le système.
-* **Stockage :** SSD (NVMe ou SATA) avec **50 Go à 100 Go libres**.
+* **Mémoire Vive (RAM) :** **32 Go installés** pour stabiliser le système.
+* **Stockage :** SSD (NVMe ou SATA) avec **300 Go à 700 Go libres**.
 
 ---
 
