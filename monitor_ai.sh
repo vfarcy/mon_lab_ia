@@ -5,10 +5,15 @@ SESSION="IA_MONITOR"
 tmux has-session -t $SESSION 2>/dev/null
 
 if [ $? != 0 ]; then
-  # Créer la session et lancer nvtop dans le premier panneau
+  # 1. Créer la session avec nvtop (le panneau du haut)
   tmux new-session -d -s $SESSION 'nvtop'
-  # Diviser l'écran verticalement et lancer htop dans le deuxième panneau
-  tmux split-window -h -v $SESSION 'htop'
+  
+  # 2. Diviser verticalement (-v) pour créer un panneau en bas
+  # On demande à htop de se lancer dans ce nouveau panneau
+  tmux split-window -t $SESSION -v 'htop'
+  
+  # Optionnel : Ajuster la taille (donner 60% à nvtop, 40% à htop)
+  # tmux resize-pane -t $SESSION:0.0 -D 10
 fi
 
 # S'attacher à la session
