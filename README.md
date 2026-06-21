@@ -1,6 +1,6 @@
 # 🏭 Guide Technique : Infrastructure d'IA Générative Locale
 
-Ceci est un guide technique comprenant les procédures d'installation, les prérequis, la maintenance et l'intégration Python de programmes python aux LLMs. Ce document constitue une référence pour la gestion d'un laboratoire IA sur une configuration réelle recyclée pour l'occasion.
+Ceci est un guide technique comprenant les procédures d'installation, les prérequis, la maintenance et l'intégration Python de programmes Python aux LLMs. Ce document constitue une référence pour la gestion d'un laboratoire IA sur une configuration réelle recyclée pour l'occasion.
 
 ---
 
@@ -9,8 +9,8 @@ L'efficacité de l'inférence (génération de texte) dépend de l'équilibre en
 
 * **Processeur (CPU) :** Minimum 4 cœurs / 8 threads (ici un **AMD Ryzen 9 7900X**. Assure le chargement initial des modèles).
 * **Accélérateur Graphique (GPU) :** Carte **NVIDIA RTX** (Architecture Pascal ou plus récente). Une **RTX 4070 Ti (12 Go VRAM)** est le cœur de calcul.
-* **Mémoire Vive (RAM) :** **32 Go installés** pour stabiliser le système.
-* **Stockage :** SSD (NVMe ou SATA) avec **300 Go pour / à 700 Go libres pour /home**.
+* **Mémoire Vive (RAM) :** **64 Go installés** pour stabiliser le système.
+* **Stockage :** SSD (NVMe ou SATA) avec **300 Go libres pour /** et **jusqu'à 700 Go pour /home**.
 
 ---
 
@@ -88,16 +88,16 @@ Pour utiliser l'IA directement dans l'éditeur de code :
     {
       "models": [
         {
-          "title": "Qwen 2.5 Coder 14B",
+          "title": "Qwen 2.5 Coder",
           "provider": "ollama",
-          "model": "qwen2.5-coder:14b",
+          "model": "qwen2.5-coder:latest",
           "apiBase": "http://localhost:11434"
         }
       ],
       "tabAutocompleteModel": {
-        "title": "Qwen 2.5 Coder 7B",
+        "title": "Qwen 3.5 4B",
         "provider": "ollama",
-        "model": "qwen2.5-coder:7b"
+        "model": "qwen3.5:4b"
       }
     }
     ```
@@ -106,7 +106,7 @@ Pour utiliser l'IA directement dans l'éditeur de code :
 Installer la bibliothèque : `pip install ollama`.
 ```python
 import ollama
-response = ollama.chat(model='qwen2.5-coder:14b', messages=[
+response = ollama.chat(model='qwen2.5-coder:latest', messages=[
     {'role': 'user', 'content': 'Génère un script Python de nettoyage de logs.'}
 ])
 print(response['message']['content'])
@@ -131,6 +131,25 @@ print(response['message']['content'])
 
 Cette documentation analyse les forces et limites des modèles installés, en fonction de leur architecture et de leur empreinte mémoire sur la **RTX 4070 Ti (12 Go)**.
 
+### Inventaire actuel (installés)
+
+| Modèle | Taille | Statut VRAM (12 Go) |
+| :--- | :--- | :--- |
+| **qwen3.5:4b** | 3.4 GB | Très fluide |
+| **phi4:latest** | 9.1 GB | Fluide |
+| **mistral-nemo:latest** | 7.1 GB | Fluide |
+| **deepseek-r1:latest** | 5.2 GB | Fluide |
+| **qwen3.6:35b-a3b** | 23 GB | Hors VRAM (CPU/RAM partiels) |
+| **gemma:2b** | 1.7 GB | Ultra fluide |
+| **gemma4:26b** | 17 GB | Hors VRAM (très lent) |
+| **qwen2.5:14b** | 9.0 GB | Optimal |
+| **aya-expanse:8b** | 5.1 GB | Fluide |
+| **qwen3.5:9b** | 6.6 GB | Très fluide |
+| **qwen2.5-coder:latest** | 4.7 GB | Très fluide |
+| **mistral:latest** | 4.4 GB | Très fluide |
+| **llama3.1:8b** | 4.9 GB | Très fluide |
+| **gemma4:e4b / gemma4:latest** | 9.6 GB | Optimal |
+
 ### 1. Le "Daily Driver" : Le compromis idéal
 
 
@@ -139,15 +158,20 @@ Cette documentation analyse les forces et limites des modèles installés, en fo
 * **Impact VRAM :** Occupant ~9.2 GB, il laisse la place nécessaire au cache de contexte (KV Cache) pour des réponses fluides.
 * **Verdict :** Le modèle principal du Lab. Il remplace avantageusement les modèles 7B et 8B pour toutes les tâches de production.
 
+#### **Qwen3.5 : 9B** (6.6 GB)
+* **Forces :** Très bon ratio vitesse/qualité, temps de réponse court et bonne polyvalence.
+* **Impact VRAM :** Faible pression mémoire, ce qui laisse de la marge pour un contexte plus long.
+* **Verdict :** Excellent choix quotidien quand la latence est prioritaire.
+
 ---
 
-### 2. Modèles Spécialisés (Métiers, Logique & Vision)
+### 2. Modèles Spécialisés (Code, Logique & Polyvalence)
 
 | Modèle | Points Forts | Limites | Cas d'Usage |
 | :--- | :--- | :--- | :--- |
 | **Qwen2.5-Coder** (4.7 GB) | Syntaxe rigoureuse (Python, JS, Bash). | Moins performant pour la rédaction littéraire. | Développement, scripts, automatisation. |
 | **DeepSeek-R1** (5.2 GB) | Raisonnement par "Chaîne de Pensée" (CoT). | Latence initiale (phase de réflexion). | Logique pure, diagnostic, mathématiques. |
-| **Llama3.2-Vision** (7.8 GB) | Analyse multimodale (Texte + Image). | Rédaction textuelle en retrait. | OCR, analyse de schémas, UI/UX. |
+| **Llama3.1 8B** (4.9 GB) | Polyvalence générale et bonne robustesse en conversation. | Raisonnement complexe en retrait vs DeepSeek-R1 / Phi-4. | Assistant généraliste, rédaction, Q/R. |
 | **Aya Expanse 8B** (5.1 GB) | Expertise multilingue (101 langues). | Moins technique que Qwen ou Phi-4. | Traduction, nuances culturelles. |
 
 ---
@@ -180,21 +204,16 @@ Cette documentation analyse les forces et limites des modèles installés, en fo
 | Objectif | Modèle Recommandé | Priorité Technique |
 | :--- | :--- | :--- |
 | **Polyvalence & Puissance** | `qwen2.5:14b` | **Équilibre VRAM/Intelligence** |
-| **Vitesse & Latence** | `qwen2.5-coder` / `mistral` | Faible empreinte mémoire |
+| **Vitesse & Latence** | `qwen2.5-coder:latest` / `mistral:latest` | Faible empreinte mémoire |
 | **Qualité de Raisonnement** | `deepseek-r1` / `phi4` | Logique multicouche |
-| **Analyse de Longs Textes** | `mistral-nemo` | Fenêtre de contexte (128k) |
-| **Analyse Visuelle** | `llama3.2-vision` | Inférence multimodale |
+| **Analyse de Longs Textes** | `mistral-nemo:latest` | Fenêtre de contexte (128k) |
+| **Assistant généraliste léger** | `qwen3.5:4b` / `gemma:2b` | Très faible latence |
+| **Capacité maximale (hors VRAM)** | `gemma4:26b` / `qwen3.6:35b-a3b` | Qualité potentielle élevée, coût perf important |
 
 ---
 
 ### 🛠️ Préconisation de Maintenance
 Pour garantir une performance constante, il est recommandé de redémarrer le service Ollama (`sudo systemctl restart ollama`) après l'utilisation intensive du modèle **Gemma 4 : 26b**. Cela permet de purger la VRAM, d'éviter la fragmentation de la mémoire vidéo et de garantir que les modèles comme **Qwen2.5:14B** s'exécutent de nouveau à 100% sur le GPU.
-### 🛠️ Rappel de Maintenance (VRAM)
-Pour garantir une performance constante, il est recommandé de redémarrer le service Ollama (`sudo systemctl restart ollama`) après l'utilisation intensive du modèle **Gemma 4 : 26b**, afin de purger la VRAM et d'éviter que les modèles légers ne soient ralentis par des résidus de mémoire.
-
-
-#### 🛠️ Préconisation de Maintenance
-Pour garantir une performance constante, il est recommandé de redémarrer le service Ollama (`sudo systemctl restart ollama`) après l'utilisation intensive du modèle **Gemma 4 : 26b**, afin de libérer totalement la mémoire vidéo et d'éviter la fragmentation de la VRAM pour les modèles plus légers.
 
 
 ---
@@ -251,7 +270,7 @@ En l'absence de l'outil sur le système, la procédure est la suivante :
 
 ---
 
-## 🎙️ 7. Configuration du Microphone (Accès Distant)
+## 🎙️ 8. Configuration du Microphone (Accès Distant)
 
 L'utilisation des fonctions vocales d'Open WebUI (STT - Speech-to-Text) nécessite une autorisation spécifique, particulièrement lors d'un accès via une adresse IP locale.
 
@@ -283,13 +302,13 @@ Si le problème persiste au niveau matériel sur le poste client (i7-3770 ou aut
 
 ---
 
-## 📋 8. Protocoles de Surveillance et Limites
+## 📋 9. Protocoles de Surveillance et Limites
 
 * **Surveillance VRAM :** Utiliser `nvtop` ou `nvidia-smi`. Si la VRAM sature, le système bascule sur la RAM (DDR3), ce qui divise la vitesse par 50.
 * **Redémarrage :** Ollama démarre via *systemd*. L'interface Docker redémarre automatiquement via le flag `--restart always`.
 * **Contexte :** Pour l'analyse de documents longs, régler le **Context Length** à **8192** (ou 16384 pour les modèles < 14B) dans les paramètres d'Open WebUI.
 * **Sécurité :** L'ouverture à `0.0.0.0` expose l'IA à votre réseau local. Utilisez un mot de passe fort sur Open WebUI.
-*  **Monitoring :** Lancer ``ssh -t login@IP "./monitor_ai.sh"`` pour visualiser les charges CPU et GPU du lab IA (voir aussi ``glances``).
+* **Monitoring :** Lancer `ssh -t login@IP "./monitor_ai.sh"` pour visualiser les charges CPU et GPU du lab IA (voir aussi `glances`).
 
 
 
