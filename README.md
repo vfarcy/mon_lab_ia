@@ -310,6 +310,8 @@ Si le problème persiste au niveau matériel sur le poste client (i7-3770 ou aut
 * **Sécurité :** L'ouverture à `0.0.0.0` expose l'IA à votre réseau local. Utilisez un mot de passe fort sur Open WebUI.
 * **Monitoring :** Lancer `ssh -t login@IP "./monitor_ai.sh"` pour visualiser les charges CPU et GPU du lab IA (voir aussi `glances`).
 
+---
+
 ## 📋 10. Connexion Tailscale
 
 Lancer
