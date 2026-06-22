@@ -318,7 +318,7 @@ Lancer
 
 `sudo tailscale up`
 
-et se connecter en ssh sur le port 3000
+et se connecter en https sur le port 3000
 
 
 
